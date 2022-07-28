@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container text-center">
+    <div class="row">
+        <div class="col-12" >
+            <h1><font face="Dancing Script">Dibujando con Código</font></h1>
+        </div>
+        
+    </div>
+
+    <div class="row" >
+        <div class="col-sm">
+            <div class="row">
+                <div class="col-sm">
+                    <h4>Seleccione la figura a crear</h4>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                     <a  class="btn btn-primary" id="boton" href="/imgAleatoria">Imagen Aleatoria</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm" style="margin-left:auto; margin-right:auto;">
+                    <img src="{{url_for ('static', filename='./images/'+data)}}" id="img" class="rounded float-start"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm" >
+            <div class="row" >
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col-sm" style="margin-top: 10px;">
+                            <h4>Subir imagen del código y compilar</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <form action="/subir" enctype='multipart/form-data' id="fot" method='POST'>
+                                <input type="file" name="file" style="margin-top:20px;" />
+                                <br>
+                                <input type="submit" id="boton" value="Subir" class="btn btn-info"  />
+                            </form>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+</div>
+
+{% endblock %}
