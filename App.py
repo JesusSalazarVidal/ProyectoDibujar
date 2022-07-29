@@ -4,7 +4,7 @@ import numpy as np
 from werkzeug.utils import secure_filename
 import os
 from datetime import timedelta
-import random
+from random import randint
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
 from svg_turtle import SvgTurtle
@@ -196,11 +196,11 @@ def compilar():
                     t.sety(50)
                     t.setx(-50)
                 elif figura == 4:
-                    t.sety(50)
-                    t.setx(0)
-                elif figura == 5:
                     t.sety(80)
                     t.setx(-50)
+                elif figura == 5:#Se cambiaron los valores de inicio por los del rombo
+                    t.sety(50)
+                    t.setx(0)
                 else:
                     t.sety(50)
                     t.setx(-50)
@@ -214,11 +214,11 @@ def compilar():
             #if color == 'azul_2':
                 #t.left(110)  # Gira a la izquierda 110°
             if color == 'rojo':
-                t.right(120)  # Gira a la derecha 60°
+                t.right(60)  # Gira a la derecha 60°
             if color == 'verde':
                 t.right(90)  # Gira a la derecha 90°
             if color == 'naranja':
-                t.right(60)  # Gira a la derecha 60°
+                t.right(120)  # Gira a la derecha 60°
             #if color == 'morado':
                 #t.left(70)  # Gira a la izquierda 70°
     else:
@@ -236,11 +236,11 @@ def compilar():
 
 @app.route('/imgAleatoria')
 def imgAleatoria():
-    num = random.randrange(5) + 1
+    num = randint(1,4)# genera un numero random del 1 al 4
     #print(num)
 
     basepath = os.path.dirname(__file__)  # ruta del archivo actual
-    random_path = os.path.join(basepath, 'static/images/figuras', str(num) + '.png')
+    random_path = os.path.join(basepath, 'static/images', str(num) + '.png')
     ram =  cv2.imread(random_path)
     ram = cv2.cvtColor(ram, cv2.COLOR_BGR2RGB)
     cv2.imwrite(os.path.join(basepath, 'static/images', 'figuraSeleccionada.png'), cv2.cvtColor(ram, cv2.COLOR_BGR2RGB))
